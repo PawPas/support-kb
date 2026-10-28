@@ -2,14 +2,18 @@
 layout: runbook
 title: '#4471 · dates parse mm/dd in eu locales'
 owner: support desk
-status: known
-reviewed: 2026-09-30
+status: resolved
+reviewed: 2026-10-28
+signature: Pawel Paskudzki
 ---
 
 <script>
   import CauseTable from '#lib/kb/CauseTable.svelte';
   import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
   import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+
+  const signature = 'Pawel Paskudzki';
 </script>
 
 Since April, people have told us their bookings land on the wrong day: a month flipped. By
@@ -30,7 +34,27 @@ Known. One issue, one fix queued.
 
 <QueueTimeline ticket={4471} />
 
+## Two bugs, not one
+
+The merge on subject counted the noise once, but the cause check (`src/lib/kb/causes.ts`)
+splits these 412 reports into **two** problems with two different fixes. One ticket cannot
+track two fixes, so each is filed as its own ticket:
+
+- `parser` (**379** reports) — the shared parser reads dates month-first, flipping day-first
+  (EU) tenants. [Ticket #1](https://github.com/PawPas/support-kb/issues/1); **fixed**
+  (`fix(dates): parse dd/mm for eu locales`), closed completed.
+- `hint` (**33** reports) — the `booking-v3` form hints `MM/DD/YYYY`, so day-first users type
+  month-first and the form stores it wrong, before the parser runs. A different bug.
+  [Ticket #2](https://github.com/PawPas/support-kb/issues/2); closed **won't fix** —
+  the `booking-v3` form was retired.
+
+The full write-up is at [#4471 · two bugs, not one](/kb/incidents/4471-causes).
+
 ## Lessons
 
-- A big ticket is mostly one bug reported many times. Merge early, count once.
+- A big ticket is mostly one bug reported many times — but check the cause before you call it
+  "known". Here it was two.
+- Merge on subject to count fast; re-run the cause check before you decide the fix.
 - Write the page while the queue is still in your head.
+
+<RenderStamp {signature} />
