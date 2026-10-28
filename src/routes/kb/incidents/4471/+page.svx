@@ -4,7 +4,7 @@ title: '#4471 · dates parse mm/dd in eu locales'
 owner: support desk
 status: resolved
 reviewed: 2026-10-28
-signature: Pawel Paskudzki
+signature: "v1.eyJzdWIiOiIxMjIzIiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyMDU2OTQsImV4cCI6MTc5MzI5MjA5NH0.ypkLFGZcYnAUymgOAahGZJBgLMZUX3CPpD-IA-nPekE"
 ---
 
 <script>
@@ -13,7 +13,7 @@ signature: Pawel Paskudzki
   import Callout from '#lib/kb/Callout.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 
-  const signature = 'Pawel Paskudzki';
+  const signature = 'v1.eyJzdWIiOiIxMjIzIiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMyMDU2OTQsImV4cCI6MTc5MzI5MjA5NH0.ypkLFGZcYnAUymgOAahGZJBgLMZUX3CPpD-IA-nPekE';
 </script>
 
 Since April, people have told us their bookings land on the wrong day: a month flipped. By
