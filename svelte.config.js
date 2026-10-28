@@ -14,7 +14,7 @@ const config = {
     })
   ],
   kit: {
-    adapter: adapter({ fallback: null, strict: true }),
+    adapter: adapter({ pages: 'docs', assets: 'docs', fallback: null, strict: true }),
     alias: { '#lib': 'src/lib' }
   }
 };
