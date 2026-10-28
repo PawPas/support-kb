@@ -3,19 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="../../../_app/immutable/entry/start.CSSA9QCp.js" rel="modulepreload">
+    <link href="../../../_app/immutable/entry/start.Bvd4-n7I.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/DLPHJf5b.js" rel="modulepreload">
-		<link href="../../../_app/immutable/chunks/Dzvn_EXd.js" rel="modulepreload">
+		<link href="../../../_app/immutable/chunks/BieOHI-U.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/B3ck760V.js" rel="modulepreload">
-		<link href="../../../_app/immutable/entry/app.B4sv8jLv.js" rel="modulepreload">
+		<link href="../../../_app/immutable/entry/app.B7-HFXkF.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/BnpOIMme.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/BG5v0sKB.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/DzrvIRbX.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/CyMa8FXv.js" rel="modulepreload">
 		<link href="../../../_app/immutable/nodes/0.DBFihmEf.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/DVJ5pYx9.js" rel="modulepreload">
-		<link href="../../../_app/immutable/nodes/5.CGFgCTJ-.js" rel="modulepreload">
-		<link href="../../../_app/immutable/chunks/ULxGO3LI.js" rel="modulepreload">
+		<link href="../../../_app/immutable/nodes/5.BIeM3V5u.js" rel="modulepreload">
+		<link href="../../../_app/immutable/chunks/D7TgU8GZ.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/6F5Jptlk.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/BeNqf_tZ.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/0CSW6DJc.js" rel="modulepreload">
@@ -26,7 +26,7 @@
 		<link href="../../../_app/immutable/assets/5.CMZ6TBbc.css" rel="stylesheet">
   </head>
   <body>
-    <div style="display:contents"><!--[--><!--[0--><!--[--><!--[--><div class="kb svelte-e2jw2j"><header><a class="crumb svelte-e2jw2j" href="/kb">support desk · kb</a> <h1 class="svelte-e2jw2j">#4471 · two bugs, not one</h1> <p class="meta svelte-e2jw2j"><span>owner <b>Pawel Paskudzki</b></span> <span class="status proposed svelte-e2jw2j">proposed</span> <span class="svelte-e2jw2j">reviewed 2026-10-28 · 0 days ago</span></p></header> <!--[-1--><!--]--> <main><p>#4471 was merged on subject lines (<a href="/kb/decisions/0001-dedupe-by-subject">decision 0001</a>):
+    <div style="display:contents"><!--[--><!--[0--><!--[--><!--[--><div class="kb svelte-e2jw2j"><header><a class="crumb svelte-e2jw2j" href="/kb">support desk · kb</a> <h1 class="svelte-e2jw2j">#4471 · two bugs, not one</h1> <p class="meta svelte-e2jw2j"><span>owner <b>Pawel Paskudzki</b></span> <span class="status resolved svelte-e2jw2j">resolved</span> <span class="svelte-e2jw2j">reviewed 2026-10-28 · 0 days ago</span></p></header> <!--[-1--><!--]--> <main><p>#4471 was merged on subject lines (<a href="/kb/decisions/0001-dedupe-by-subject">decision 0001</a>):
 every report whose subject sounded like a wrong date went into one ticket, “dates parse
 mm/dd in eu locales”. That counts the noise once, which is what the desk wanted. But the
 desk’s own cause logic (<code>src/lib/kb/causes.ts</code>) does not agree that it is one bug.</p> <aside class="warn svelte-17bri61"><!---->Run the cause check over the 412 reports and they fall into <b>two</b> groups with two
@@ -34,26 +34,29 @@ different fixes. One ticket cannot track two fixes.<!----></aside><!----> <h2>Wh
 their subject but do not share the known cause.</p> <h2>The two problems</h2> <p><strong><code>parser</code> — the shared parser reads every date month-first.</strong> A day-first (EU) tenant’s
 dates come out flipped: 7 April becomes 4 July. This is the bug the desk already knows, and
 it covers most of the ticket. Fix: parse each tenant’s dates in that tenant’s locale.
-Filed as <a href="https://github.com/PawPas/support-kb/issues/1" rel="nofollow">ticket #1</a>.</p> <p><strong><code>hint</code> — the <code>booking-v3</code> form hints <code>MM/DD/YYYY</code>.</strong> Day-first users follow the hint and
+Filed as <a href="https://github.com/PawPas/support-kb/issues/1" rel="nofollow">ticket #1</a>; <strong>fixed</strong> and closed
+completed (<code>fix(dates): parse dd/mm for eu locales</code>).</p> <p><strong><code>hint</code> — the <code>booking-v3</code> form hints <code>MM/DD/YYYY</code>.</strong> Day-first users follow the hint and
 type the month first; the form then stores the value the tenant’s day-first way, so the date
 is already wrong at entry, before the parser runs. Only <code>form</code> reports from the three <code>booking-v3</code> tenants (alder.physio, copper.studio, pale.harbour) land here. Fixing the parser
 does <strong>not</strong> fix these. Fix: make the form hint match the tenant’s locale.
-Filed as <a href="https://github.com/PawPas/support-kb/issues/2" rel="nofollow">ticket #2</a>.</p> <h2>Why one ticket hid two bugs</h2> <p>The merge rule reads the <strong>subject line</strong>, never the body or the tenant. Two bugs produce the
+Filed as <a href="https://github.com/PawPas/support-kb/issues/2" rel="nofollow">ticket #2</a>; closed <strong>won’t fix</strong> —
+the <code>booking-v3</code> form was retired, so the bad hint is gone with it.</p> <h2>Resolved (desk update, 5 Oct)</h2> <p>The desk closed #4471 on 5 October with two outcomes, one per cause — the proof that it was
+never one bug:</p> <ul><li><code>parser</code> → <strong>FIXED</strong>: <code>fix(dates): parse dd/mm for eu locales</code>.</li> <li><code>hint</code> → <strong>WON’T FIX</strong>: <code>booking-v3</code> form retired.</li></ul> <h2>Why one ticket hid two bugs</h2> <p>The merge rule reads the <strong>subject line</strong>, never the body or the tenant. Two bugs produce the
 same complaint — “my date is wrong” — so both flowed into #4471. Intake’s <code>intakeTag</code> does not
 rescue this: it guesses from the reporter’s browser, and it disagrees with the real cause on
 38 reports (tagged <code>hint</code> but really <code>parser</code>, and the other way round).</p> <h2>Lessons</h2> <ul><li>Merge on subject to count fast, but re-check the cause before you call a ticket “known”.</li> <li>A number that can be computed belongs in a component: the counts above come from <code>causes.ts</code>, so they cannot drift from the data.</li></ul> <!--[0--><p class="stamp svelte-1280m42">desk ref <b class="svelte-1280m42">DR-QH7A-P05M</b></p><!--]--><!----><!----></main> <footer class="svelte-e2jw2j">Pages are written by people. Tables and charts are built from data at render time.</footer></div><!--]--><!----><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_de37b0 = {
+					__sveltekit_14prr5d = {
 						base: new URL("../../..", location).pathname.slice(0, -1)
 					};
 
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("../../../_app/immutable/entry/start.CSSA9QCp.js"),
-						import("../../../_app/immutable/entry/app.B4sv8jLv.js")
+						import("../../../_app/immutable/entry/start.Bvd4-n7I.js"),
+						import("../../../_app/immutable/entry/app.B7-HFXkF.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 5],

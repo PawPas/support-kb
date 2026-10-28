@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 · two bugs, not one'
 owner: Pawel Paskudzki
-status: proposed
+status: resolved
 reviewed: 2026-10-28
 signature: Pawel Paskudzki
 ---
@@ -38,14 +38,24 @@ their subject but do not share the known cause.
 **`parser` — the shared parser reads every date month-first.** A day-first (EU) tenant's
 dates come out flipped: 7 April becomes 4 July. This is the bug the desk already knows, and
 it covers most of the ticket. Fix: parse each tenant's dates in that tenant's locale.
-Filed as [ticket #1](https://github.com/PawPas/support-kb/issues/1).
+Filed as [ticket #1](https://github.com/PawPas/support-kb/issues/1); **fixed** and closed
+completed (`fix(dates): parse dd/mm for eu locales`).
 
 **`hint` — the `booking-v3` form hints `MM/DD/YYYY`.** Day-first users follow the hint and
 type the month first; the form then stores the value the tenant's day-first way, so the date
 is already wrong at entry, before the parser runs. Only `form` reports from the three
 `booking-v3` tenants (alder.physio, copper.studio, pale.harbour) land here. Fixing the parser
 does **not** fix these. Fix: make the form hint match the tenant's locale.
-Filed as [ticket #2](https://github.com/PawPas/support-kb/issues/2).
+Filed as [ticket #2](https://github.com/PawPas/support-kb/issues/2); closed **won't fix** —
+the `booking-v3` form was retired, so the bad hint is gone with it.
+
+## Resolved (desk update, 5 Oct)
+
+The desk closed #4471 on 5 October with two outcomes, one per cause — the proof that it was
+never one bug:
+
+- `parser` → **FIXED**: `fix(dates): parse dd/mm for eu locales`.
+- `hint` → **WON'T FIX**: `booking-v3` form retired.
 
 ## Why one ticket hid two bugs
 
