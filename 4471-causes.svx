@@ -4,7 +4,7 @@ title: '#4471 · two bugs, not one'
 owner: Pawel Paskudzki
 status: resolved
 reviewed: 2026-10-28
-signature: Pawel Paskudzki
+signature: pawel.paskudzki@gmail.com
 ---
 
 <script>
@@ -12,7 +12,7 @@ signature: Pawel Paskudzki
   import Callout from '#lib/kb/Callout.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 
-  const signature = 'Pawel Paskudzki';
+  const signature = 'pawel.paskudzki@gmail.com';
 </script>
 
 #4471 was merged on subject lines ([decision 0001](/kb/decisions/0001-dedupe-by-subject)):

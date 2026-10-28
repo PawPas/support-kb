@@ -4,7 +4,7 @@ title: '#4471 · dates parse mm/dd in eu locales'
 owner: support desk
 status: resolved
 reviewed: 2026-10-28
-signature: Pawel Paskudzki
+signature: pawel.paskudzki@gmail.com
 ---
 
 <script>
@@ -13,7 +13,7 @@ signature: Pawel Paskudzki
   import Callout from '#lib/kb/Callout.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 
-  const signature = 'Pawel Paskudzki';
+  const signature = 'pawel.paskudzki@gmail.com';
 </script>
 
 Since April, people have told us their bookings land on the wrong day: a month flipped. By
