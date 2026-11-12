@@ -1,0 +1,30 @@
+name: build
+
+# Quality gate: the kb must prerender cleanly before anything merges.
+# Deterministic check — no agent judgement. A broken prerender (e.g. an
+# mdsvex layout path that keeps %20, see AGENTS.md) fails here, not in prod.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Prerender the static site
+        run: npm run build
